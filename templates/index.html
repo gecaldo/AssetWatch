@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="15">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AssetWatch</title>
+    <style>
+        body {
+            margin: 40px;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            padding: 20px;
+            background: white;
+            border-left: 8px solid gray;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .green { border-left-color: #2e9d55; }
+        .yellow { border-left-color: #e5a700; }
+        .red { border-left-color: #c93b3b; }
+
+        .online, .offline {
+            font-weight: bold;
+        }
+
+        .online { color: green; }
+        .offline { color: red; }
+
+        .score {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .section-title {
+            margin-top: 18px;
+            font-weight: bold;
+        }
+
+        .finding {
+            margin: 6px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>AssetWatch</h1>
+    <div class="subtitle">Endpoint Asset &amp; Security Posture Monitor</div>
+
+    <div class="grid">
+        {% for asset in assets %}
+        <div class="card {{ asset.status|lower }}">
+            <h2>{{ asset.hostname }}</h2>
+
+            {% if asset.online %}
+            <div class="online">● ONLINE</div>
+            {% else %}
+            <div class="offline">● OFFLINE</div>
+            {% endif %}
+
+            <p>{{ asset.os_name }}</p>
+            <p>Version: {{ asset.os_version }}</p>
+            <p class="score">Risk: {{ asset.risk_score }}/100</p>
+            <p>Status: <strong>{{ asset.status }}</strong></p>
+
+            <div class="section-title">Firewall</div>
+            {% for name, enabled in asset.firewall_profiles.items() %}
+            <div>{{ name }}: {{ "Enabled" if enabled else "Disabled" }}</div>
+            {% endfor %}
+
+            <div class="section-title">SMBv1</div>
+            <div>{{ asset.smbv1 }}</div>
+
+            <div class="section-title">Latest Reported Hotfix</div>
+            <div>{{ asset.last_hotfix or "Unavailable" }}</div>
+
+            <div class="section-title">Local Administrators</div>
+            <div>{{ asset.local_admins | join(", ") }}</div>
+
+            <div class="section-title">Listening TCP Ports</div>
+            <div>{{ asset.listening_ports | join(", ") }}</div>
+
+            <div class="section-title">Findings</div>
+            {% if asset.findings %}
+                {% for finding in asset.findings %}
+                <div class="finding">
+                    <strong>{{ finding.severity }}</strong> - {{ finding.message }}
+                </div>
+                {% endfor %}
+            {% else %}
+            <div>No current findings</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
