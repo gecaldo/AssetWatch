@@ -1,6 +1,6 @@
 # AssetWatch
 
-AssetWatch is a small Windows endpoint posture monitor built as a personal lab project.
+AssetWatch is a small Windows endpoint posture monitor built as a co-developed lab project.
 
 A PowerShell agent collects basic host information and sends it to a Flask API. The server stores the latest report in SQLite and displays each endpoint on a simple dashboard.
 
