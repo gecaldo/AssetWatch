@@ -33,7 +33,7 @@ In a second PowerShell window:
 
 Open `http://127.0.0.1:5000`.
 
-`demo_bad.ps1` sends a synthetic endpoint with intentionally weak settings so the RED state can be demonstrated without changing the host's security configuration.
+`demo_risky_endpoint.ps1` sends a synthetic endpoint with intentionally weak settings so the RED state can be demonstrated without changing the host's security configuration.
 
 ## Limitations
 
