@@ -35,7 +35,7 @@ Open `http://127.0.0.1:5000`.
 
 `demo_bad.ps1` sends a synthetic endpoint with intentionally weak settings so the RED state can be demonstrated without changing the host's security configuration.
 
-## Notes
+## Limitations
 
 This is an educational project, not a CIS or DISA STIG compliance scanner. The risk weights are simple lab values used to make the findings easy to visualize.
 
