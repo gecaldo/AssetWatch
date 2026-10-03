@@ -42,3 +42,5 @@ This is an educational project, not a CIS or DISA STIG compliance scanner. The r
 ## Architecture
 
 ![AssetWatch Architecture](AssetWatch_Architecture.png)
+
+![AssetWatch Dashboard](AssetWatch_Dashboard.png)
