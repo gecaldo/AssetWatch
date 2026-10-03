@@ -39,6 +39,26 @@ Open `http://127.0.0.1:5000`.
 
 This is an educational project, not a CIS or DISA STIG compliance scanner. The risk weights are simple lab values used to make the findings easy to visualize.
 
+## Team Contributions
+
+AssetWatch was developed collaboratively by two developers.
+
+### Richard Lee
+- PowerShell endpoint collection
+- Endpoint/API integration
+- Port-baseline testing
+
+### Edward Lee
+- Flask/SQLite backend
+- Dashboard integration
+- Architecture documentation
+
+### Shared
+- Project design
+- Security posture rules
+- Debugging and testing
+- Documentation
+
 ## Architecture
 
 ![AssetWatch Architecture](AssetWatch_Architecture.png)
